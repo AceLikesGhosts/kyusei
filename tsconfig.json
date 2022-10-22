@@ -27,6 +27,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "declaration": true
   },
