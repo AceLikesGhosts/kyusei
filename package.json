@@ -11,8 +11,12 @@
   "name": "kyusei",
   "version": "0.0.1",
   "main": "./dist/index.js",
+  "homepage": "https://acelikesghosts.github.io/kyusei",
+  "repository": {
+    "url": "https://github.com/acelikesghosts/kyusei"
+  },
   "scripts": {
-    "compile": "npx tsc ./src/",
+    "compile": "npx tsc",
     "typedoc": "npx typedoc ./src/"
   },
   "keywords": [
