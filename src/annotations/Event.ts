@@ -11,10 +11,10 @@ interface EventData
 
 /**
  * @example ```ts
- * import { Command, CommandBase } from './Command';
+ * import { Event, EventBase } from './Event';
  * 
  * @Event({ name = 'messageCreate' })
- * export default class ExampleEvent implements CommandBase
+ * export default class ExampleEvent implements EventBase
  * {
  *  public static execute(interaction: CommandInteraction) 
  *  {
