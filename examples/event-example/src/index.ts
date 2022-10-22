@@ -6,8 +6,8 @@ const kyu = new Kyu({
     intents: [],
     // The Kyu instance will go through each file within the
     // folder provided, and find each class annotated with 
-    // @Command(...)
-    commands: {
+    // @Event(...)
+    events: {
         path: join(__dirname, 'commands')
     }
 });

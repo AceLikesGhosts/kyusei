@@ -37,8 +37,8 @@ class Kyu<Ready extends boolean> extends Client<Ready>
 {
     public opts: KyuOptions;
     public commands: Collection<string, SharedData> | null;
+    public logger: Logger | undefined;
     private useKyuEvents: boolean = true;
-    private logger: Logger | undefined;
 
     constructor(opts: KyuOptions)
     {
