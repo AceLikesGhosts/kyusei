@@ -1,5 +1,5 @@
 import { Events } from 'discord.js';
-import Kyu from 'src/structures/client/Kyu';
+import Kyu from '../structures/client/Kyu';
 
 /**
  * @description The data about a command.
