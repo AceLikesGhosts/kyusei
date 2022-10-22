@@ -29,6 +29,10 @@ interface SharedData
     handler: CommandBase;
 }
 
+/**
+ * @description Kyu Client, an extension of a normal Discord.JS {Client}
+ * @see {Client}
+ */
 class Kyu<Ready extends boolean> extends Client<Ready>
 {
     public opts: KyuOptions;
