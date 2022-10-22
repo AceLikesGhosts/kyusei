@@ -7,7 +7,7 @@ kyusei is a [Discord.JS](https://github.com/discordjs/discord.js/)
 utility framework, written in Typescript which aims to 
 make Commands and Events easier by providing annotations/decorators for them.
 
-[Documentation](https://github.com/AceLikesGhosts/kyusei/tree/master/docs)
+[Documentation](https://acelikesghosts.github.io/kyusei/)
 
 [Examples](https://github.com/AceLikesGhosts/kyusei/tree/master/examples)
 
