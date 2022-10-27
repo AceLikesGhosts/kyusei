@@ -1,9 +1,9 @@
+import Logger from '../../logger/Logger';
 import { Client, ClientOptions, Collection, Interaction } from 'discord.js';
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
 import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
-import Logger from 'src/logger/Logger';
 
 interface KyuOptions extends ClientOptions
 {
@@ -15,6 +15,7 @@ interface KyuOptions extends ClientOptions
     events?: {
         path?: string;
         eventList?: { data: EventData, base: EventBase; }[];
+        disableKyuEvents?: boolean;
     };
     logger?: {
         filePath?: string;
@@ -33,7 +34,7 @@ interface SharedData
  * @description Kyu Client, an extension of a normal Discord.JS {Client}
  * @see {Client}
  */
-class Kyu<Ready extends boolean> extends Client<Ready>
+class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 {
     public opts: KyuOptions;
     public commands: Collection<string, SharedData> | null;
@@ -113,6 +114,9 @@ class Kyu<Ready extends boolean> extends Client<Ready>
 
     private async findEvents(dir?: string): Promise<void>
     {
+        if(this.useKyuEvents === false)
+            this.useKyuEvents = false;
+
         if(this.opts.events && this.opts.events.path || !this.opts.events)
         {
             dir = dir ? dir : join(__dirname, '..', 'commands');
@@ -167,7 +171,7 @@ class Kyu<Ready extends boolean> extends Client<Ready>
             if(i.isSelectMenu()) this.emit('selectMenu', i);
             if(i.isCommand())
             {
-                const command = this.commands?.get(i.commandName);
+                const command: SharedData | undefined = this.commands?.get(i.commandName);
 
                 if(!command)
                     return;
