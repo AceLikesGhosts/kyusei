@@ -1,0 +1,21 @@
+diff --git a/node_modules/discord.js/typings/index.d.ts b/node_modules/discord.js/typings/index.d.ts
+index 9798eb0..41297e9 100644
+--- a/node_modules/discord.js/typings/index.d.ts
++++ b/node_modules/discord.js/typings/index.d.ts
+@@ -190,6 +190,7 @@ import {
+   RawWidgetData,
+   RawWidgetMemberData,
+ } from './rawDataTypes';
++import Kyu from '../../../src';
+ 
+ declare module 'node:events' {
+   class EventEmitter {
+@@ -379,7 +380,7 @@ export class ApplicationFlagsBitField extends BitField<ApplicationFlagsString> {
+ 
+ export abstract class Base {
+   public constructor(client: Client<true>);
+-  public readonly client: Client<true>;
++  public readonly client: Kyu<true>;
+   public toJSON(...props: Record<string, boolean | string>[]): unknown;
+   public valueOf(): string;
+ }

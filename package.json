@@ -4,6 +4,7 @@
     "@typescript-eslint/parser": "^5.3.1",
     "eslint": "^8.2.0",
     "nodemon": "^2.0.15",
+    "patch-package": "^6.5.0",
     "ts-node": "^10.4.0",
     "typedoc": "^0.23.17",
     "typescript": "^4.4.2"
@@ -18,7 +19,8 @@
   },
   "scripts": {
     "compile": "npx tsc",
-    "typedoc": "npx typedoc ./src/"
+    "typedoc": "npx typedoc ./src/",
+    "postinstall": "patch-package"
   },
   "keywords": [
     "utility",
