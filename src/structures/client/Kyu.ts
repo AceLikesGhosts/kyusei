@@ -88,7 +88,8 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
                 if(file.endsWith('.js') || file.endsWith('.ts'))
                 {
-                    const registeredCommand: CommandBase = await import(path);
+                    const baseCommand: new () => CommandBase = await import(path);
+                    const registeredCommand: CommandBase = new baseCommand();
                     const metadata: CommandData = Reflect.getMetadata('data', registeredCommand);
 
                     if(this.shouldLog())
@@ -122,7 +123,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
         if(this.opts.events && this.opts.events.path || !this.opts.events)
         {
-            dir = dir ? dir : join(__dirname, '..', 'commands');
+            dir = dir ? dir : join(__dirname, '..', 'events');
             const files = readdirSync(dir);
 
             for(const file of files)
@@ -131,7 +132,8 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
                 if(file.endsWith('.js') || file.endsWith('.ts'))
                 {
-                    const registeredEvent: EventBase = await import(path);
+                    const baseEvent: new () => EventBase = await import(path);
+                    const registeredEvent: EventBase = new baseEvent();
                     const metadata: EventData = Reflect.getMetadata('data', registeredEvent);
 
                     if(metadata.name === 'interactionCreate')
