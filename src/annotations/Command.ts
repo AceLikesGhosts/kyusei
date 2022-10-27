@@ -33,7 +33,7 @@ function Command(data: CommandData): any
 {
     return function (target: any): any
     {
-        Reflect.defineProperty(target, 'data', data);
+        Reflect.defineMetadata(target, 'data', data);
     };
 }
 
