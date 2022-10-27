@@ -48,6 +48,9 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         this.opts = opts;
         this.commands = null;
 
+        if(this.opts.mobile)
+            this.opts.ws!.properties!.browser = 'Discord Android';
+
         if(this.opts.logger?.debug && !this.opts.logger.writeToFile)
             this.logger = new Logger();
 
