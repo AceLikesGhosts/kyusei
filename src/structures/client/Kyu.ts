@@ -37,7 +37,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 {
     public opts: KyuOptions;
     public commands: Collection<string, SharedData> | null;
-    public logger: Logger | undefined;
+    public logger: ILogger | undefined;
     private useKyuEvents: boolean = true;
 
     constructor(opts: KyuOptions)
@@ -54,7 +54,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             throw new Error('Bad argument passed to Kyu constructor: Cannot have both default set to a value, and an instance of a logger passed.');
 
         if(!opts.logger?.instance && opts.logger?.default)
-            this.logger = new BaseLogger() as any;
+            this.logger = new BaseLogger();
     }
 
     /**
