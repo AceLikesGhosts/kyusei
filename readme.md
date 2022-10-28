@@ -26,6 +26,8 @@ const client: Kyu<true> = new Kyu({
     }
 });
 
+client.init('token');
+
 // commands/ExampleCommand.ts
 import { Command, CommandBase } from 'kyusei';
 import { CommandInteration } from 'discord.js';
