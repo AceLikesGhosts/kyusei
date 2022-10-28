@@ -10,7 +10,7 @@
   "scripts": {
     "compile": "npx tsc",
     "typedoc": "npx typedoc ./src/",
-    "publish": "npm run compile",
+    "prepublish": "npm run compile",
     "postinstall": "npx patch-package"
   },
   "keywords": [
