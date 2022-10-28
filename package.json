@@ -1,6 +1,6 @@
 {
   "name": "kyusei",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "./dist/index.js",
   "homepage": "https://acelikesghosts.github.io/kyusei",
   "repository": {
