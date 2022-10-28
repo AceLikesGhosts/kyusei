@@ -1,4 +1,4 @@
-import Logger from '../../logger/Logger';
+import Logger, { BaseLogger, ILogger } from '../../logger/Logger';
 import { Client, ClientOptions, Collection, Interaction, Routes, SlashCommandBuilder } from 'discord.js';
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
@@ -18,10 +18,9 @@ interface KyuOptions extends ClientOptions
         disableKyuEvents?: boolean;
     };
     logger?: {
-        filePath?: string;
-        writeToFile?: boolean;
-        debug?: boolean;
-    };
+        instance: any | ILogger;
+        default?: boolean;
+    }
 }
 
 interface SharedData
@@ -48,29 +47,27 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         this.opts = opts;
         this.commands = null;
 
-        if(this.opts.mobile)
-            this.opts.ws!.properties!.browser = 'Discord Android';
+        if(opts.logger?.instance)
+            this.logger = new Logger(opts.logger.instance);
 
-        if(this.opts.logger?.debug && !this.opts.logger.writeToFile)
-            this.logger = new Logger();
+        if(opts.logger?.instance && opts.logger.default)
+            throw new Error('Bad argument passed to Kyu constructor: Cannot have both default set to a value, and an instance of a logger passed.');
 
-        if(this.opts.logger?.writeToFile && !this.opts.logger.filePath)
-            throw new Error('Bad argument passed : Cannot write to file without a path!');
-
-        if(this.opts.logger?.writeToFile && this.opts.logger.filePath)
-            this.logger = new Logger({ writeToFile: this.opts.logger.writeToFile, filePath: this.opts.logger.filePath });
+        if(!opts.logger?.instance && opts.logger?.default)
+            this.logger = new BaseLogger() as any;
     }
 
+    /**
+     * @description Basic function to see weither or not the client should log, returns a boolean.
+     * @returns {boolean} Weither or not the client should log information.
+     */
     private shouldLog(): boolean
     {
-        if(this.opts.logger?.debug)
+        if(this.opts.logger?.instance)
             return true;
 
-        if(this.opts.logger?.writeToFile && this.opts.logger.filePath)
+        if(!this.opts.logger?.instance && this.opts.logger?.default)
             return true;
-
-        if(this.opts.logger?.writeToFile && !this.opts.logger.filePath)
-            return false;
 
         return false;
     }

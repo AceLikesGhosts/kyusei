@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { Kyu, KyuOptions, SharedData } from './structures';
-import Logger, { ILogger, ILoggerOptions } from './logger/Logger';
+import Logger, { ILogger, BaseLogger } from './logger/Logger';
 
 import
 {
@@ -30,5 +30,5 @@ export
     // Logger
     Logger,
     ILogger,
-    ILoggerOptions
+    BaseLogger
 };
