@@ -1,5 +1,5 @@
 import Logger from '../../logger/Logger';
-import { Client, ClientOptions, Collection, Interaction } from 'discord.js';
+import { Client, ClientOptions, Collection, Interaction, Routes, SlashCommandBuilder } from 'discord.js';
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
 import { readdirSync, lstatSync } from 'fs';
@@ -202,6 +202,38 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
         this.login(token);
         return token;
+    }
+
+    public async publishCommands(opts: { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; }): Promise<void>
+    {
+        const commandBuilders: SlashCommandBuilder[] = [];
+
+        this.commands?.forEach(async (val) =>
+        {
+            const { metadata } = val;
+
+            const builder = new SlashCommandBuilder()
+                .setName(metadata.name)
+                .setDescription(`${ metadata.description || 'No Description Provided' }`)
+                .setDefaultMemberPermissions(metadata.permission?.type);
+
+            commandBuilders.push(builder);
+        });
+
+        const JSONMappedCommands = commandBuilders.map(command => command.toJSON());
+
+        if(opts.global === false || typeof opts.global === undefined)
+        {
+            if(opts?.guilds?.selective && opts.guilds.selective.id)
+            {
+                (await this.guilds.fetch(opts.guilds.selective.id)).commands.set(JSONMappedCommands);
+            }
+
+        }
+        else await this.rest.put(
+            Routes.applicationCommands(opts.clientId!),
+            { body: JSONMappedCommands }
+        );
     }
 }
 
