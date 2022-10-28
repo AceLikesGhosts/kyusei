@@ -42,6 +42,9 @@ export default class ExampleCommand implements CommandBase
 }
 ```
 
+## Publishing
+If you have permission to publish, then go ahead and run `npm publish` and increment the version number, please push the version change as well.
+
 ### This project relies heavily upon:
 - Reflect-Metadata
 - Discord.JS

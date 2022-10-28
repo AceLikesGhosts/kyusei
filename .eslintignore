@@ -2,3 +2,4 @@ node_modules
 dist
 builds
 examples
+jest.config.ts

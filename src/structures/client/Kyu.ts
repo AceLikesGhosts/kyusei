@@ -206,6 +206,9 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
     public async publishCommands(opts: { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; }): Promise<void>
     {
+        if(!this.commands || typeof this.commands === undefined)
+            throw new Error('Unable to publish commands if the commands collection is empty.');
+
         const commandBuilders: SlashCommandBuilder[] = [];
 
         this.commands?.forEach(async (val) =>
