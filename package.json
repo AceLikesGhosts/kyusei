@@ -1,6 +1,6 @@
 {
   "name": "kyusei",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "main": "./dist/index.js",
   "homepage": "https://acelikesghosts.github.io/kyusei",
   "repository": {
@@ -18,7 +18,7 @@
     "discordjs"
   ],
   "author": "AceLikesGhosts",
-  "license": "GFUS",
+  "license": "unlicense",
   "description": "A DiscordJS utility library!",
   "dependencies": {
     "chalk": "^4.0.0",
