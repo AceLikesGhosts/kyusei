@@ -3,3 +3,4 @@ dist
 builds
 examples
 jest.config.ts
+docs
