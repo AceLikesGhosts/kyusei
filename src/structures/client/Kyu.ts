@@ -20,7 +20,7 @@ interface KyuOptions extends ClientOptions
     logger?: {
         instance: any | ILogger;
         default?: boolean;
-    }
+    };
 }
 
 interface SharedData
@@ -72,6 +72,10 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         return false;
     }
 
+    /**
+     * @description Recursively loops over a directory, and finds each `@Command(...)` instance. 
+     * @param {string} dir The path to the directory to recursively look through to load every command. 
+     */
     private async findCommands(dir?: string): Promise<void>
     {
         if(this.opts.commands && this.opts.commands.path || !this.opts.commands)
@@ -113,6 +117,10 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         }
     }
 
+    /**
+     * @description Recursively loops over a directory, and finds each `@Event(...)` instance. 
+     * @param {string} dir The path to the directory to recursively look through to load every command. 
+     */
     private async findEvents(dir?: string): Promise<void>
     {
         if(this.useKyuEvents === false)
@@ -190,6 +198,11 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         });
     }
 
+    /**
+     * @description Starts the process of finding events, commands, our registering events if applicable, and then logging in to Discord.
+     * @param {string} token The Discord bot token to login with. 
+     * @returns {string} The token
+     */
     public init(token: string): string
     {
         this.findEvents();
@@ -201,6 +214,10 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         return token;
     }
 
+    /**
+     * @description Publishes slash commands, using a long list of options.
+     * @param { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; } opts The options to publish the commands with. 
+     */
     public async publishCommands(opts: { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; }): Promise<void>
     {
         if(!this.commands || typeof this.commands === undefined)
