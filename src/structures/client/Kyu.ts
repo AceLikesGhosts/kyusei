@@ -216,7 +216,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 
     /**
      * @description Publishes slash commands, using a long list of options.
-     * @param { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; } opts The options to publish the commands with. 
+     * @param {global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }} opts The options to publish the commands with. 
      */
     public async publishCommands(opts: { global?: boolean, clientId?: string, guilds?: { selective: { id: string; }; }; }): Promise<void>
     {
