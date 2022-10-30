@@ -3,7 +3,6 @@
         "./src/index.ts"
     ],
     "out": "./docs",
-    "theme": "markdown",
     "exclude": [
         "./node_modules/**.**",
         "./dist/**.**"
