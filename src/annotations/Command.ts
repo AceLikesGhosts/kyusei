@@ -1,4 +1,4 @@
-import { CommandInteraction } from 'discord.js';
+import { ApplicationCommandOptionType, ChatInputCommandInteraction } from 'discord.js';
 
 /**
  * @description The data about a command.
@@ -6,6 +6,7 @@ import { CommandInteraction } from 'discord.js';
 interface CommandData
 {
     name: string;
+    type?: ApplicationCommandOptionType;
     description?: string;
     permission?: {
         type: bigint;
@@ -13,7 +14,7 @@ interface CommandData
     options?: [{
         name: string;
         description: string;
-        type: number;
+        type: ApplicationCommandOptionType;
         required?: boolean;
         choices?: [{
             name: string;
@@ -52,7 +53,7 @@ function Command(data: CommandData): any
 interface CommandBase
 {
     // eslint-disable-next-line no-unused-vars
-    execute(interaction: CommandInteraction): any;
+    execute(interaction: ChatInputCommandInteraction): any;
 }
 
 export { Command, CommandBase };

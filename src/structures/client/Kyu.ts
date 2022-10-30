@@ -195,7 +195,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             if(i.isModalSubmit()) this.emit('modalSubmit', i);
             if(i.isUserContextMenuCommand()) this.emit('userContextMenuCommand', i);
             if(i.isSelectMenu()) this.emit('selectMenu', i);
-            if(i.isCommand())
+            if(i.isChatInputCommand())
             {
                 const command: SharedData | undefined = this.commands?.get(i.commandName);
 
