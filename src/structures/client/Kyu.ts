@@ -1,5 +1,5 @@
 import Logger, { BaseLogger, ILogger } from '../../logger/Logger';
-import { Client, ClientOptions, Collection, Interaction, Routes, SlashCommandBuilder } from 'discord.js';
+import { Client, ClientOptions, Collection, Interaction, Routes } from 'discord.js';
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
 import { readdirSync, lstatSync } from 'fs';
@@ -27,6 +27,22 @@ interface SharedData
 {
     metadata: CommandData;
     handler: CommandBase;
+}
+
+enum SlashCommandOptionTypes 
+{
+    _,
+    SUB_COMMAND,
+    SUB_COMMAND_GROUP,
+    STRING,
+    INTERGER,
+    BOOLEAN,
+    USER,
+    CHANNEl,
+    ROLE,
+    MENTIONABLE,
+    NUMBER,
+    ATTACHMENT
 }
 
 /**
@@ -223,36 +239,46 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         if(!this.commands || typeof this.commands === undefined)
             throw new Error('Unable to publish commands if the commands collection is empty.');
 
-        const commandBuilders: SlashCommandBuilder[] = [];
+        const JSONCommands: any[] = [];
 
         this.commands?.forEach(async (val) =>
         {
             const { metadata } = val;
 
-            const builder = new SlashCommandBuilder()
-                .setName(metadata.name)
-                .setDescription(`${ metadata.description || 'No Description Provided' }`)
-                .setDefaultMemberPermissions(metadata.permission?.type);
-
-            commandBuilders.push(builder);
+            const isOkayJSON: boolean = this.isJson(metadata);
+            
+            if(isOkayJSON)
+                JSONCommands.push(metadata);
+            else
+                throw new Error('Invalid JSON was provided when parsing commands\nName: ' + metadata.name);
         });
-
-        const JSONMappedCommands = commandBuilders.map(command => command.toJSON());
 
         if(opts.global === false || typeof opts.global === undefined)
         {
             if(opts?.guilds?.selective && opts.guilds.selective.id)
             {
-                (await this.guilds.fetch(opts.guilds.selective.id)).commands.set(JSONMappedCommands);
+                (await this.guilds.fetch(opts.guilds.selective.id)).commands.set(JSONCommands);
             }
-
         }
         else await this.rest.put(
             Routes.applicationCommands(opts.clientId!),
-            { body: JSONMappedCommands }
+            { body: JSONCommands }
         );
+    }
+
+    private isJson(data: unknown): boolean
+    {
+        try
+        {
+            JSON.parse(data as string);
+            return true;
+        }
+        catch(e: unknown)
+        {
+            return false;
+        }
     }
 }
 
 export default Kyu;
-export type { KyuOptions, SharedData };
+export type { KyuOptions, SharedData, SlashCommandOptionTypes };

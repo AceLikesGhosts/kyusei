@@ -9,8 +9,17 @@ interface CommandData
     description?: string;
     permission?: {
         type: bigint;
-        countAdmin?: boolean;
     };
+    options?: [{
+        name: string;
+        description: string;
+        type: number;
+        required?: boolean;
+        choices?: [{
+            name: string;
+            value: string;
+        }];
+    }]
 }
 
 /**
