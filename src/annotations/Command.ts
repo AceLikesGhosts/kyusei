@@ -53,7 +53,7 @@ function Command(data: CommandData): any
 interface CommandBase
 {
     // eslint-disable-next-line no-unused-vars
-    execute(interaction: ChatInputCommandInteraction): any;
+    execute(interaction: ChatInputCommandInteraction): any | Promise<any>;
 }
 
 export { Command, CommandBase };
