@@ -4,7 +4,8 @@ import Kyu, { ILogger } from '../../../src/index';
 const kyu = new Kyu({
     intents: [],
     logger: {
-        debug: true
+        instance: undefined,
+        default: true
     }
 });
 
@@ -12,4 +13,4 @@ const kyu = new Kyu({
 kyu.init('Your Token');
 
 // By passing `{debug: true}` the Logger instance will actually exist, otherwise it won't.
-(kyu.logger as ILogger).info('whatever you need to log');
+kyu.logger!.info('whatever you need to log');

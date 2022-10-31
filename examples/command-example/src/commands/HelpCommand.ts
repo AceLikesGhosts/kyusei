@@ -1,4 +1,4 @@
-import { CommandInteraction, CacheType } from 'discord.js';
+import { CacheType, ChatInputCommandInteraction } from 'discord.js';
 import { Command, CommandBase } from '../../../../src';
 
 // The command's metadata, what we need to register the command.
@@ -6,7 +6,7 @@ import { Command, CommandBase } from '../../../../src';
 export default class HelpCommand implements CommandBase
 {
     // What we should do when the command is ran.
-    execute(interaction: CommandInteraction<CacheType>)
+    execute(interaction: ChatInputCommandInteraction<CacheType>)
     {
         interaction.reply('Help command ran!');
     }
