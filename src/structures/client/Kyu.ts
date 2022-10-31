@@ -171,7 +171,10 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         {
             for(let i: number = 0; i < this.opts.events.eventList.length; i++)
             {
-                this.on(this.opts.events.eventList[i].data.name, (...args) => this.opts!.events!.eventList![i].base.execute(this as Kyu<Ready>, ...args));
+                if(this.opts.events.eventList[i].data.once)
+                    this.once(this.opts.events.eventList[i].data.name, (...args) => this.opts!.events!.eventList![i].base.execute(this as Kyu<Ready>, ...args));
+                else
+                    this.on(this.opts.events.eventList[i].data.name, (...args) => this.opts!.events!.eventList![i].base.execute(this as Kyu<Ready>, ...args));
             }
         }
     }
