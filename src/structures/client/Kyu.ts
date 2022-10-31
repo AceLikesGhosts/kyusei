@@ -229,7 +229,6 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
                         this.once(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
                     else
                         this.on(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
-
                 }
             }
         }
