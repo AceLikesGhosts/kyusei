@@ -1,6 +1,6 @@
 {
   "name": "kyusei",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "main": "./dist/index.js",
   "homepage": "https://acelikesghosts.github.io/kyusei",
   "repository": {
@@ -10,7 +10,7 @@
   "scripts": {
     "compile": "npx tsc",
     "typedoc": "npx typedoc ./src/",
-    "prepublish": "npm run compile",
+    "prepublish": "npx tsc",
     "postinstall": "npx patch-package"
   },
   "keywords": [
