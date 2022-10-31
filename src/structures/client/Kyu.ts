@@ -260,7 +260,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
     }
 
     /**
-     * @description Starts the process of finding events, commands, our registering events if applicable, and then logging in to Discord.
+     * @description Starts the process of finding events, commands, extensions, our registering events if applicable, and then logging in to Discord.
      * @param {string} token The Discord bot token to login with. 
      * @returns {string} The token
      */
@@ -268,6 +268,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
     {
         this.findEvents();
         this.findCommands();
+        this.handleExtensions();
         if(this.useKyuEvents)
             this.registerOurHandlers();
 
