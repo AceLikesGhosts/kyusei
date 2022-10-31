@@ -155,7 +155,10 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
                     if(this.shouldLog())
                         this.logger?.info('Registered event ' + metadata.name + '.');
 
-                    this.on(metadata.name, (...args) => registeredEvent.execute(this as Kyu<Ready>, ...args));
+                    if(metadata.once)
+                        this.once(metadata.name, (...args) => registeredEvent.execute(this as Kyu<Ready>, ...args));
+                    else
+                        this.on(metadata.name, (...args) => registeredEvent.execute(this as Kyu<Ready>, ...args));
                 }
                 else if(lstatSync(path).isDirectory())
                 {
@@ -222,7 +225,11 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             {
                 for(let j: number = 0; j < data.events.eventList.length; j++)
                 {
-                    this.on(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
+                    if(data.events.eventList[i].data.once)
+                        this.once(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
+                    else
+                        this.on(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
+
                 }
             }
         }

@@ -7,6 +7,7 @@ import Kyu from '../structures/client/Kyu';
 interface EventData
 {
     name: string | Events;
+    once?: boolean;
 }
 
 /**
