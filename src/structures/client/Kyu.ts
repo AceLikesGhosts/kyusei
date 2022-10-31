@@ -1,9 +1,10 @@
-import Logger, { BaseLogger, ILogger } from '../../logger/Logger';
+import Logger, { BaseLogger, ILogger } from '../logger/Logger';
 import { Client, ClientOptions, Collection, Interaction, Routes } from 'discord.js';
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
 import { readdirSync, lstatSync } from 'fs';
 import { join } from 'path';
+import { ExtensionData } from 'src/extensions';
 
 interface KyuOptions extends ClientOptions
 {
@@ -21,28 +22,13 @@ interface KyuOptions extends ClientOptions
         instance: any | ILogger;
         default?: boolean;
     };
+    extensions?: ExtensionData[];
 }
 
 interface SharedData
 {
     metadata: CommandData;
     handler: CommandBase;
-}
-
-enum SlashCommandOptionTypes 
-{
-    _,
-    SUB_COMMAND,
-    SUB_COMMAND_GROUP,
-    STRING,
-    INTERGER,
-    BOOLEAN,
-    USER,
-    CHANNEl,
-    ROLE,
-    MENTIONABLE,
-    NUMBER,
-    ATTACHMENT
 }
 
 /**
@@ -52,7 +38,8 @@ enum SlashCommandOptionTypes
 class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 {
     public opts: KyuOptions;
-    public commands: Collection<string, SharedData> | null;
+    public commands: Collection<string, SharedData>;
+    public extensions: { name: string, description?: string; }[];
     public logger: ILogger | undefined;
     private useKyuEvents: boolean = true;
 
@@ -61,7 +48,8 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         super(opts);
 
         this.opts = opts;
-        this.commands = null;
+        this.commands = new Collection<string, SharedData>;
+        this.extensions = [];
 
         if(opts.logger?.instance)
             this.logger = new Logger(opts.logger.instance);
@@ -92,9 +80,9 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
      * @description Recursively loops over a directory, and finds each `@Command(...)` instance. 
      * @param {string} dir The path to the directory to recursively look through to load every command. 
      */
-    private async findCommands(dir?: string): Promise<void>
+    public async findCommands(dir?: string): Promise<void>
     {
-        if(this.opts.commands && this.opts.commands.path || !this.opts.commands)
+        if(this.opts.commands && this.opts.commands.path || !this.opts.commands || this.extensions.length > 0)
         {
             dir = dir ? dir : join(__dirname, '..', 'commands');
             const files = readdirSync(dir);
@@ -137,12 +125,12 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
      * @description Recursively loops over a directory, and finds each `@Event(...)` instance. 
      * @param {string} dir The path to the directory to recursively look through to load every command. 
      */
-    private async findEvents(dir?: string): Promise<void>
+    public async findEvents(dir?: string): Promise<void>
     {
         if(this.useKyuEvents === false)
             this.useKyuEvents = false;
 
-        if(this.opts.events && this.opts.events.path || !this.opts.events)
+        if(this.opts.events && this.opts.events.path || !this.opts.events || this.extensions.length > 0)
         {
             dir = dir ? dir : join(__dirname, '..', 'events');
             const files = readdirSync(dir);
@@ -183,6 +171,63 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
                 this.on(this.opts.events.eventList[i].data.name, (...args) => this.opts!.events!.eventList![i].base.execute(this as Kyu<Ready>, ...args));
             }
         }
+    }
+
+    public async handleExtensions(): Promise<void>
+    {
+        // #region Bad handling
+        if(!this.opts.extensions || this.opts.extensions.length === 0)
+        {
+            if(this.shouldLog())
+                this.logger?.info('Loading 0 extensions.');
+
+            return;
+        }
+        else
+        {
+            if(this.shouldLog())
+                this.logger?.info('Loading ' + this.opts.extensions.length + ' extensions.');
+        }
+        // #endregion
+
+
+        for(let i: number = 0; i < this.opts.extensions.length; i++)
+        {
+            const data: ExtensionData = this.opts.extensions[i];
+
+            this.extensions.push({
+                name: data.name,
+                description: data.description ?? 'None provided.',
+            });
+
+            if(this.shouldLog())
+                this.logger?.info(`Loading extension ${ data.name } (${ data.description })`);
+
+            if(data.commands && data.commands.path)
+                this.findCommands(data.commands?.path);
+            else if(data.commands && data.commands.commandList)
+            {
+                for(let j: number = 0; j < data.commands.commandList.length; j++)
+                {
+                    const metadata = data.commands.commandList[j].data;
+                    const handler = data.commands.commandList[j].base;
+
+                    this.commands?.set(metadata.name, { metadata, handler });
+                }
+            }
+
+            if(data.events && data.events.path)
+                this.findEvents(data.events.path);
+            else if(data.events && data.events.eventList)
+            {
+                for(let j: number = 0; j < data.events.eventList.length; j++)
+                {
+                    this.on(data.events.eventList[i].data.name, (...args) => data.events!.eventList![i]!.base.execute(this as Kyu<Ready>, ...args));
+                }
+            }
+        }
+
+        return;
     }
 
     private async registerOurHandlers(): Promise<void> 
@@ -246,7 +291,7 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             const { metadata } = val;
 
             const isOkayJSON: boolean = this.isJson(metadata);
-            
+
             if(isOkayJSON)
                 JSONCommands.push(metadata);
             else
@@ -281,4 +326,4 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
 }
 
 export default Kyu;
-export type { KyuOptions, SharedData, SlashCommandOptionTypes };
+export type { KyuOptions, SharedData };
