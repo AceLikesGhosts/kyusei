@@ -1,4 +1,4 @@
-import Kyu, { ILogger } from '../../../src/index';
+import Kyu from '../../../src/index';
 
 // Creating a new Kyu instance, which extends from a normal Discord.JS client.
 const kyu = new Kyu({
