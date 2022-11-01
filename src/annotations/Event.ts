@@ -40,7 +40,7 @@ function Event(data: EventData): any
 interface EventBase
 {
     // eslint-disable-next-line no-unused-vars
-    execute(client: Kyu<boolean>, ...args: any[]): any;
+    execute(client: Kyu<boolean>, ...args: any[]): any | Promise<any>;
 }
 
 export { Event, EventBase };
