@@ -87,8 +87,9 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             dir = dir ? dir : join(__dirname, '..', 'commands');
             const files = readdirSync(dir);
 
-            for(const file of files)
+            for(let i: number = 0; i < files.length; i++)
             {
+                const file: string = files[i];
                 const path: string = `${ dir }/${ file }`;
 
                 if(file.endsWith('.js') || file.endsWith('.ts'))
@@ -135,8 +136,9 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
             dir = dir ? dir : join(__dirname, '..', 'events');
             const files = readdirSync(dir);
 
-            for(const file of files)
+            for(let i: number = 0; i < files.length; i++)
             {
+                const file: string = files[i];
                 const path: string = `${ dir }/${ file }`;
 
                 if(file.endsWith('.js') || file.endsWith('.ts'))
