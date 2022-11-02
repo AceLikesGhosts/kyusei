@@ -32,7 +32,7 @@ interface SharedData
 }
 
 /**
- * @description Kyu Client, an extension of a normal Discord.JS {Client}
+ * @description Kyu Client, an extension of a normal Discord.JS
  * @see {Client}
  */
 class Kyu<Ready extends boolean = boolean> extends Client<Ready>
