@@ -22,7 +22,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">KyuOptions</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/de0fdaa/src/structures/client/Kyu.ts#L8">src/structures/client/Kyu.ts:8</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L9">src/structures/client/Kyu.ts:9</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -34,6 +34,7 @@
 <a href="KyuOptions.html#closeTimeout" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>close<wbr/>Timeout?</span></a>
 <a href="KyuOptions.html#commands" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>commands?</span></a>
 <a href="KyuOptions.html#events" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>events?</span></a>
+<a href="KyuOptions.html#extensions" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>extensions?</span></a>
 <a href="KyuOptions.html#failIfNotExists" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>fail<wbr/>If<wbr/>Not<wbr/>Exists?</span></a>
 <a href="KyuOptions.html#intents" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>intents</span></a>
 <a href="KyuOptions.html#jsonTransformer" class="tsd-index-link tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg><span>json<wbr/>Transformer?</span></a>
@@ -74,7 +75,7 @@
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/de0fdaa/src/structures/client/Kyu.ts#L11">src/structures/client/Kyu.ts:11</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L12">src/structures/client/Kyu.ts:12</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="events" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>events</span><a href="#events" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">events<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-symbol">{ </span><br/><span>    </span>disableKyuEvents<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>eventList<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span><br/><span>        </span>base<span class="tsd-signature-symbol">: </span><a href="EventBase.html" class="tsd-signature-type" data-tsd-kind="Interface">EventBase</a><span class="tsd-signature-symbol">; </span><br/><span>        </span>data<span class="tsd-signature-symbol">: </span><a href="EventData.html" class="tsd-signature-type" data-tsd-kind="Interface">EventData</a><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span><br/><span>    </span>path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span></div>
@@ -88,7 +89,12 @@
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> path<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/de0fdaa/src/structures/client/Kyu.ts#L15">src/structures/client/Kyu.ts:15</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L16">src/structures/client/Kyu.ts:16</a></li></ul></aside></section>
+<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface"><a id="extensions" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>extensions</span><a href="#extensions" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<div class="tsd-signature">extensions<span class="tsd-signature-symbol">?:</span> <a href="ExtensionData.html" class="tsd-signature-type" data-tsd-kind="Interface">ExtensionData</a><span class="tsd-signature-symbol">[]</span></div><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L25">src/structures/client/Kyu.ts:25</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a id="failIfNotExists" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>fail<wbr/>If<wbr/>Not<wbr/>Exists</span><a href="#failIfNotExists" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">fail<wbr/>If<wbr/>Not<wbr/>Exists<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div><aside class="tsd-sources">
@@ -131,7 +137,7 @@
 <li class="tsd-parameter">
 <h5>instance<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/de0fdaa/src/structures/client/Kyu.ts#L20">src/structures/client/Kyu.ts:20</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L21">src/structures/client/Kyu.ts:21</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a id="makeCache" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>make<wbr/>Cache</span><a href="#makeCache" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">make<wbr/>Cache<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">CacheFactory</span></div><aside class="tsd-sources">
@@ -142,7 +148,7 @@
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>mobile</span><a href="#mobile" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">mobile<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">boolean</span></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/de0fdaa/src/structures/client/Kyu.ts#L10">src/structures/client/Kyu.ts:10</a></li></ul></aside></section>
+<li>Defined in <a href="https://github.com/AceLikesGhosts/kyusei/blob/f75df7e/src/structures/client/Kyu.ts#L11">src/structures/client/Kyu.ts:11</a></li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a id="partials" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagOptional">Optional</code> <span>partials</span><a href="#partials" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">partials<span class="tsd-signature-symbol">?:</span> <span class="tsd-signature-type">Partials</span><span class="tsd-signature-symbol">[]</span></div><aside class="tsd-sources">
@@ -220,6 +226,7 @@
 <li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="KyuOptions.html#closeTimeout" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>close<wbr/>Timeout?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="KyuOptions.html#commands" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>commands?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface"><a href="KyuOptions.html#events" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>events?</a></li>
+<li class="tsd-kind-property tsd-parent-kind-interface"><a href="KyuOptions.html#extensions" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>extensions?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="KyuOptions.html#failIfNotExists" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>fail<wbr/>If<wbr/>Not<wbr/>Exists?</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="KyuOptions.html#intents" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>intents</a></li>
 <li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-external"><a href="KyuOptions.html#jsonTransformer" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>json<wbr/>Transformer?</a></li>
