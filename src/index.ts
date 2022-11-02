@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import { Kyu, KyuOptions, SharedData } from './structures';
 import Logger, { ILogger, BaseLogger } from './structures/logger/Logger';
+import { makeExtension, ExtensionData } from './extensions';
 
 import
 {
@@ -30,5 +31,9 @@ export
     // Logger
     Logger,
     ILogger,
-    BaseLogger
+    BaseLogger,
+
+    // Extensions
+    makeExtension,
+    ExtensionData
 };
