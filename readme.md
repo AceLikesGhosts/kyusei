@@ -30,12 +30,12 @@ client.init('token');
 
 // commands/ExampleCommand.ts
 import { Command, CommandBase } from 'kyusei';
-import { CommandInteration } from 'discord.js';
+import { ChatInputCommandInteraction, CacheType } from 'discord.js';
 
 @Command({ name: 'Example', description: 'A basic command' })
 export default class ExampleCommand implements CommandBase
 {
-    public execute(interaction: CommandInteraction)
+    public execute(interaction: ChatInputCommandInteraction<CacheType>)
     {
         interaction.reply('Example command ran!');
     }
