@@ -1,6 +1,6 @@
 {
   "name": "kyusei",
-  "version": "0.4.8",
+  "version": "0.4.9-PATCH",
   "main": "./dist/index.js",
   "homepage": "https://acelikesghosts.github.io/kyusei",
   "repository": {
@@ -23,6 +23,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "reflect-metadata": "^0.1.13",
+    "discord.js": "^14.6.0",
     "tslib": "^2.4.1"
   },
   "peerDependencies": {
