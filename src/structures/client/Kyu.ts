@@ -82,9 +82,11 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
      */
     public async findCommands(dir?: string): Promise<void>
     {
+        if(dir === null || dir === undefined)
+            throw new Error('Event dir cannot be null or undefined');
+
         if(this.opts.commands && this.opts.commands.path || !this.opts.commands || this.extensions.length > 0)
         {
-            dir = dir ? dir : join(__dirname, '..', 'commands');
             const files = readdirSync(dir);
 
             for(let i: number = 0; i < files.length; i++)
@@ -131,9 +133,11 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
         if(this.useKyuEvents === false)
             this.useKyuEvents = false;
 
+        if(dir === null || dir === undefined)
+            throw new Error('Event dir cannot be null or undefined');
+
         if(this.opts.events && this.opts.events.path || !this.opts.events || this.extensions.length > 0)
         {
-            dir = dir ? dir : join(__dirname, '..', 'events');
             const files = readdirSync(dir);
 
             for(let i: number = 0; i < files.length; i++)
