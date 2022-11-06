@@ -280,8 +280,8 @@ class Kyu<Ready extends boolean = boolean> extends Client<Ready>
      */
     public init(token: string): string
     {
-        this.findEvents();
-        this.findCommands();
+        this.opts.events?.path ? this.findEvents(this.opts.events?.path) : null;
+        this.opts.commands?.path ? this.findCommands() : null;
         this.handleExtensions();
         if(this.useKyuEvents)
             this.registerOurHandlers();
