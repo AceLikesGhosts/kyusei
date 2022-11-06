@@ -3,7 +3,6 @@ import { Client, ClientOptions, Collection, Interaction, Routes } from 'discord.
 import { CommandBase, CommandData } from '../../annotations/Command';
 import { EventBase, EventData } from '../../annotations/Event';
 import { readdirSync, lstatSync } from 'fs';
-import { join } from 'path';
 import { ExtensionData } from 'src/extensions';
 
 interface KyuOptions extends ClientOptions
