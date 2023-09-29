@@ -1,6 +1,3 @@
-> **Another dead project that I gave up on. Please ignore this, it won't be updated.**
-> **New @turel-bot library incoming to replace this dogshit.**
-
 # kyusei
 - Kyusei or 急性 means "acute", there is no reason behind this name, it just sounds nice!
 
