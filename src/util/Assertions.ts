@@ -1,8 +1,10 @@
+import { AssertionError } from 'assert';
 import Logger from './Logger';
 
 export function assert(value: unknown, message?: string): asserts value {
     if(!value) {
         Logger.error(message || 'Assertion Failed');
+        throw new AssertionError();
     }
 }
 
