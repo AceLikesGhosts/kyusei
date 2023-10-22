@@ -1,4 +1,13 @@
 {
+    "rules": {
+        "@typescript-eslint/consistent-type-imports": [
+            "error",
+            {
+                "prefer": "type-imports",
+                "fixStyle": "seperate-type-imports"
+            }
+        ]
+    },
     "extends": [
         "plugin:@typescript-eslint/recommended",
         "@biased-ts/eslint-config/ProperTS",

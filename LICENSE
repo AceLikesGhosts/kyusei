@@ -1,5 +1,4 @@
-/**
-@license MIT License
+MIT License
 
 Copyright (c) 2023 AceLikesGhosts
 
@@ -20,16 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-*/
-
-import 'reflect-metadata';
-
-import Command from './annotations/Command';
-
-import { Kyu } from './structs/KyuWrapper';
-import type { KyuInstance } from './types/Kyu.type';
-
-export default Kyu;
-export { Command };
-export type { KyuInstance };
