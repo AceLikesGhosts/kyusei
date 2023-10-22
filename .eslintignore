@@ -1,6 +1,3 @@
-node_modules
 dist
-builds
-examples
-jest.config.ts
+node_modules
 docs
