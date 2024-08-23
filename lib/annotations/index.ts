@@ -1,9 +1,9 @@
 import type { ClientEvents } from 'discord.js';
 
 export type AnyFunction = (...args: any[]) => any | PromiseLike<any>;
-export type Event<K extends keyof ClientEvents> = {
+export type DiscordEvent<K extends keyof ClientEvents> = {
     on: K;
-    once: boolean;
+    once?: boolean;
 };
 
 export * from './Command';

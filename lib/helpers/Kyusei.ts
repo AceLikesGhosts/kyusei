@@ -7,11 +7,11 @@ export default class Kyu extends Client {
         super(opts);
 
         this.on('interactionCreate', handleInteractions);
-        for(const [event, data] of EventMap) {
+        for(const [, data] of EventMap) {
             if(data.once) {
-                this.once(event, data.execute);
+                this.once(data.on, data.execute);
             } else {
-                this.on(event, data.execute);
+                this.on(data.on, data.execute);
             }
         }
     }

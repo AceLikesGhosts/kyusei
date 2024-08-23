@@ -1,9 +1,9 @@
 import type { ClientEvents } from 'discord.js';
-import type { Event, AnyFunction } from '.';
+import type { AnyFunction, DiscordEvent } from '.';
 
-export const EventMap = new Map<string, Event<keyof ClientEvents> & { execute: AnyFunction; }>();
+export const EventMap = new Map<string, DiscordEvent<keyof ClientEvents> & { execute: AnyFunction; }>();
 
-export default function Event(data: Event<keyof ClientEvents>) {
+export default function Event(data: DiscordEvent<keyof ClientEvents>) {
     return function (target: any, propertyKey: string) {
         EventMap.set(data.on, {
             ...data,

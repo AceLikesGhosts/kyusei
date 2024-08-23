@@ -2,8 +2,6 @@ import { ApplicationCommandType, AutocompleteInteraction, CommandInteraction, In
 import { Command, Autocomplete, Event } from './lib/annotations';
 import Kyusei from './lib/helpers/Kyusei';
 
-const wrappedClient = new Kyusei({ intents: [] });
-
 class MyCommands {
     @Command(new SlashCommandBuilder().setName('hi'))
     public static thing(i: CommandInteraction) {
@@ -16,16 +14,26 @@ class MyCommands {
         i.respond([]);
     }
 
-    @Event({ once: false, on: 'ready' })
+    @Event({ once: true, on: 'ready' })
     public static ready(client: Kyusei) {
         console.log(`ready as ${ client.user?.username }`);
     }
 }
 
+const wrappedClient = new Kyusei({ intents: [] });
+
 // @ts-expect-error this is ok
-wrappedClient.emit('interactionCreate', { commandName: 'hi', 
-    commandType: ApplicationCommandType.ChatInput, 
-    isCommand: () => true, isAutocomplete: () => false, 
+wrappedClient.emit('ready', {
+    user: {
+        username: 'hi'
+    }
+});
+
+// @ts-expect-error this is ok
+wrappedClient.emit('interactionCreate', {
+    commandName: 'hi',
+    commandType: ApplicationCommandType.ChatInput,
+    isCommand: () => true, isAutocomplete: () => false,
     followUp: () => void 0, reply: () => void 0, respond: () => void 0,
-    type: InteractionType.ApplicationCommand 
+    type: InteractionType.ApplicationCommand
 });
